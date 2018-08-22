@@ -1,10 +1,5 @@
-# import spotipy
-# spotify = spotipy.Spotify()
-# name = 'Ed Sheeran'
-# results = spotify.search(q='artist:' + name, type='artist')
-# print(results)
-
 # coding: utf-8
+
 import spotipy
 import spotipy.util as util
 import json
