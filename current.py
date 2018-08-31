@@ -5,6 +5,7 @@ import spotipy.util as util
 import json
 import pync
 import os
+import requests
 
 CLIENT_ID = '0653e348f6134e17afe2533c3307bb48'
 CLIENT_SECRET = '147ceb6e7e3b4139aac65bfdebbf9557'
@@ -35,7 +36,16 @@ def current_user_playing(spot):
 # cache_token = token.get_access_token()
 # spotify = spotipy.Spotify(cache_token) # use for not-so-private data
 
-token = util.prompt_for_user_token(USER,scope,client_id=CLIENT_ID,client_secret=CLIENT_SECRET,redirect_uri='http://localhost/')
+token = util.prompt_for_user_token(USER,
+                                    scope,
+                                    client_id=CLIENT_ID,
+                                    client_secret=CLIENT_SECRET,
+                                    redirect_uri='http://localhost/')
+
+refresh = requests.post('https://accounts.spotify.com/api/token',
+                        data={'grant_type': 'authorization_code',
+                                'code': token,
+                                'redirect_uri': 'http://localhost/'})
 spotify = spotipy.Spotify(auth=token)
 
 ###### COLLECTION
