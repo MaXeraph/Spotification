@@ -30,6 +30,24 @@ def current_user_playing(spot):
         '''
         return spot._get('me/player')
 
+def get_data():
+    data, current_player  = current_user_playing_track(spotify), current_user_playing(spotify)
+
+    try:
+        current_device = current_player['device']['name']
+    except Exception as e:
+        current_device = None
+    try:
+        current_title = data["item"]['name']
+    except Exception as e:
+        current_title = None
+    try:
+        current_artist = data["item"]["artists"][0]["name"]
+    except Exception as e:
+        current_artist = None
+
+    return current_title, current_artist, current_device
+
 
 ###### AUTH
 # token = util.oauth2.SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
