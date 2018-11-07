@@ -9,13 +9,15 @@ import spotipy
 import spotipy.util as util
 from spotipy.oauth2 import SpotifyClientCredentials
 
+import credentials
+
 import json
 import time
 
-CLIENT_ID = '0653e348f6134e17afe2533c3307bb48'
-CLIENT_SECRET = '147ceb6e7e3b4139aac65bfdebbf9557'
-USER = '12180777012'
-DISPLAY = 'Max Pham'
+CLIENT_ID = credentials.CLIENT_ID
+CLIENT_SECRET = credentials.CLIENT_SECRET
+USER = credentials.USER
+DISPLAY = credentials.DISPLAY
 scope = 'user-modify-playback-state' #https://developer.spotify.com/web-api/using-scopes/
 
 def start_playback(self, device_id = None, context_uri = None, uris = None, offset = None):
@@ -62,6 +64,7 @@ def pause_playback(spot, device_id = None):
 token = util.prompt_for_user_token(USER,scope,client_id=CLIENT_ID,client_secret=CLIENT_SECRET,redirect_uri='http://localhost/')
 spotify = spotipy.Spotify(auth=token)
 
+# Pause playback for 3 seconds then restart
 try:
     pause_playback(spotify)
 except:

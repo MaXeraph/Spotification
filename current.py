@@ -6,14 +6,16 @@ import json
 import pync
 import os
 import requests
+import credentials
 
-CLIENT_ID = '0653e348f6134e17afe2533c3307bb48'
-CLIENT_SECRET = '147ceb6e7e3b4139aac65bfdebbf9557'
-USER = '12180777012'
-DISPLAY = 'Max Pham'
+CLIENT_ID = credentials.CLIENT_ID
+CLIENT_SECRET = credentials.CLIENT_SECRET
+USER = credentials.USER
+DISPLAY = credentials.DISPLAY
 scope = 'user-read-playback-state' #https://developer.spotify.com/web-api/using-scopes/
 
 def notify(device: str, title: str, artist: str):
+    ''' Ping macOs '''
     pync.notify("Playing: %s by %s | %s" % (title, artist, device),
                  title='Spotify',
                  activate='com.spotify.client',

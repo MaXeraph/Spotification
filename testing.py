@@ -6,10 +6,10 @@ import webbrowser
 import base64
 import six
 
-CLIENT_ID = '0653e348f6134e17afe2533c3307bb48'
-CLIENT_SECRET = '147ceb6e7e3b4139aac65bfdebbf9557'
-USER = '12180777012'
-DISPLAY = 'Max Pham'
+CLIENT_ID = credentials.CLIENT_ID
+CLIENT_SECRET = credentials.CLIENT_SECRET
+USER = credentials.USER
+DISPLAY = credentials.DISPLAY
 scopes = 'user-read-playback-state' #https://developer.spotify.com/web-api/using-scopes/
 
 ###### AUTH
@@ -31,7 +31,7 @@ def request_auth(client, scope):
         print('ACCESS DENIED')
 
 def request_refresh_for_tokens(authy):
-    
+
     payload = {'Authorization': 'Basic %s' % (_make_authorization_headers(CLIENT_ID,CLIENT_SECRET)),
                 'grant_type': 'authorization_code',
                 'code': authy,
